@@ -6,9 +6,9 @@ import java.util.ArrayList;
 public class ArrayListHeap implements Heap {
 
     private ArrayList table;
-    private Node parentNode;
-    private Node leftChildNode;
-    private Node rightChildNode;
+    private Node parent;
+    private Node child;
+    private Node rightChild;
 
     public ArrayListHeap() {
         this.table = new ArrayList();
@@ -22,8 +22,18 @@ public class ArrayListHeap implements Heap {
      */
     @Override
     public boolean insert(Object item) {
-        this.table.add(item);
-        this.parentNode = 
+        if (!contains(item)) {
+            this.table.add(item);
+
+            if (this.table.size() == 0) {
+                this.parent = (Node) item;
+            } else {
+                this.child = (Node) table.get(table.size() - 1);
+                this.parent = (Node) table.get((this.table.size() - 2)/2);
+            }
+            return true;
+        }
+        return false;
     }
 
     /**
@@ -46,6 +56,18 @@ public class ArrayListHeap implements Heap {
     @Override
     public boolean remove(Object target) {
         return false;
+    }
+
+    public Node getParent() {
+        return this.parent;
+    }
+
+    public Node getChild() {
+        return this.child;
+    }
+
+    public Node getRightChild() {
+        return this.rightChild;
     }
 
 
