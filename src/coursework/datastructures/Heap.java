@@ -29,7 +29,4 @@ public interface Heap<E> {
      * @return
      */
     boolean remove(E target);
-
-
-
 }
